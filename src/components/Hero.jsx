@@ -531,10 +531,10 @@ function RollerTypewriterBadge() {
 /* ─────────────────────────────────────────────────────────────
    Realistic Luxury Flat Ribbon Lanyard & Swivel Snap Hook Connector
 ───────────────────────────────────────────────────────────── */
-function LanyardAnchor() {
+function LanyardAnchor({ isDesktop }) {
   return (
     <div
-      className="absolute -top-80 left-1/2 -translate-x-1/2 z-0 pointer-events-none flex flex-col items-center"
+      className={`absolute ${isDesktop ? '-top-80' : '-top-[560px]'} left-1/2 -translate-x-1/2 z-0 pointer-events-none flex flex-col items-center transition-all duration-300`}
     >
       {/* Sleek Flush Metallic Ceiling Slot (Scaled to 40px strap) */}
       <div className="w-16 h-3 bg-gradient-to-b from-[#1E232E] to-[#0A0C10] rounded-b-md shadow-lg border-b border-white/20" />
@@ -544,15 +544,16 @@ function LanyardAnchor() {
 
 const STRAP_HALF_W = 20 // 40px wide custom luxury ribbon strap
 
-function DynamicLanyard({ x, y, rotateZ }) {
+function DynamicLanyard({ x, y, rotateZ, isDesktop }) {
   // Dynamic curved Bezier ribbon path with trigonometric rotation matching the card's tilt
   const strapPath = useTransform([x, y, rotateZ], ([cx, cy, rz]) => {
     const safeCx = typeof cx === 'number' && !isNaN(cx) ? cx : 0
     const safeCy = typeof cy === 'number' && !isNaN(cy) ? cy : 0
     const safeRz = typeof rz === 'number' && !isNaN(rz) ? rz : 0
     const rad = (safeRz * Math.PI) / 180
-    const sleeveX = safeCx + 56 * Math.sin(rad)
-    const sleeveY = safeCy + 343 - 56 * Math.cos(rad)
+    const anchorY = isDesktop ? 375 : 615
+    const sleeveX = safeCx + 52 * Math.sin(rad)
+    const sleeveY = safeCy + anchorY - 52 * Math.cos(rad)
 
     // Tangent vectors along the rotated leather sleeve top edge
     const cosR = Math.cos(rad)
@@ -583,8 +584,9 @@ function DynamicLanyard({ x, y, rotateZ }) {
     const safeCy = typeof cy === 'number' && !isNaN(cy) ? cy : 0
     const safeRz = typeof rz === 'number' && !isNaN(rz) ? rz : 0
     const rad = (safeRz * Math.PI) / 180
-    const sleeveX = safeCx + 56 * Math.sin(rad)
-    const sleeveY = safeCy + 343 - 56 * Math.cos(rad)
+    const anchorY = isDesktop ? 375 : 615
+    const sleeveX = safeCx + 52 * Math.sin(rad)
+    const sleeveY = safeCy + anchorY - 52 * Math.cos(rad)
     const cosR = Math.cos(rad)
     const sinR = Math.sin(rad)
     const hw = 7
@@ -608,10 +610,10 @@ function DynamicLanyard({ x, y, rotateZ }) {
 
   return (
     <svg
-      className="absolute -top-80 left-1/2 -translate-x-1/2 overflow-visible pointer-events-none z-0"
-      width="400"
-      height={650}
-      viewBox="-200 0 400 650"
+      className={`absolute ${isDesktop ? '-top-80' : '-top-[560px]'} left-1/2 -translate-x-1/2 overflow-visible pointer-events-none z-0`}
+      width="800"
+      height={isDesktop ? 800 : 1000}
+      viewBox={isDesktop ? "-400 0 800 800" : "-400 0 800 1000"}
       style={{
         filter: 'drop-shadow(0 5px 8px rgba(0,0,0,0.6))',
       }}
@@ -901,10 +903,10 @@ function HangingIDCard() {
       }}
     >
       {/* ── 1. Metal Swivel Clip Anchor at Top ── */}
-      <LanyardAnchor />
+      <LanyardAnchor isDesktop={isDesktop} />
 
       {/* ── 2. Fabric Lanyard Cord (follows card motion & tilt) ── */}
-      <DynamicLanyard x={cardX} y={cardY} rotateZ={rotateZ} />
+      <DynamicLanyard x={cardX} y={cardY} rotateZ={rotateZ} isDesktop={isDesktop} />
 
       {/* ── 3. Interactive Draggable 3D Card Assembly ── */}
       <motion.div
@@ -1157,20 +1159,31 @@ const textItem = {
   },
 }
 
+const TECH_STACK = [
+  { name: 'HTML', bg: '#C2410C', text: '#FFFFFF', shadow: 'rgba(194, 65, 12, 0.35)' },
+  { name: 'CSS', bg: '#1D4ED8', text: '#FFFFFF', shadow: 'rgba(29, 78, 216, 0.35)' },
+  { name: 'JavaScript', bg: '#3D3D3D', text: '#FFFFFF', shadow: 'rgba(255, 255, 255, 0.1)' },
+  { name: 'React', bg: '#0284C7', text: '#FFFFFF', shadow: 'rgba(2, 132, 199, 0.35)' },
+  { name: 'Next.js', bg: '#27272A', text: '#FAFAFA', shadow: 'rgba(255, 255, 255, 0.15)' },
+  { name: 'Laravel', bg: '#DC2626', text: '#FFFFFF', shadow: 'rgba(220, 38, 38, 0.35)' },
+  { name: 'Flutter', bg: '#0369A1', text: '#FFFFFF', shadow: 'rgba(3, 105, 161, 0.35)' },
+  { name: 'MySQL', bg: '#0F766E', text: '#FFFFFF', shadow: 'rgba(15, 118, 110, 0.35)' },
+]
+
 /* ── Main Hero ── */
 export default function Hero({ isLoaded = false }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 md:px-12 lg:px-16 overflow-hidden pt-24 pb-28 sm:pt-28 sm:pb-36 lg:pt-20 lg:pb-24"
+      className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 md:px-12 lg:px-16 overflow-hidden pt-24 pb-32 sm:pt-28 sm:pb-40 lg:pt-20 lg:pb-24"
     >
       {/* ── 1. Dynamic Ambient Background System ── */}
       <HeroBackground />
 
-      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 sm:gap-16 lg:gap-16 xl:gap-20 py-8 sm:py-16 relative z-10">
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-16 xl:gap-20 py-8 sm:py-16 relative z-10">
         {/* Left — Text Information (Higher Z-Index so lanyard stays cleanly behind) */}
         <motion.div
-          className="flex-1 min-w-0 relative z-40 pointer-events-auto"
+          className="flex-1 min-w-0 relative z-40 pointer-events-auto text-left"
           variants={textContainer}
           initial="hidden"
           {...(isLoaded
@@ -1199,18 +1212,9 @@ export default function Hero({ isLoaded = false }) {
             <RollerTypewriterBadge />
           </motion.div>
 
-          {/* Full Color Modern Tech Stack Badges */}
-          <motion.div variants={textItem} className="mt-6 flex flex-wrap gap-2.5 max-w-lg">
-            {[
-              { name: 'HTML5', bg: '#C2410C', text: '#FFFFFF', shadow: 'rgba(194, 65, 12, 0.35)' },
-              { name: 'CSS3', bg: '#1D4ED8', text: '#FFFFFF', shadow: 'rgba(29, 78, 216, 0.35)' },
-              { name: 'JavaScript', bg: '#3D3D3D', text: '#FFFFFF', shadow: 'rgba(255, 255, 255, 0.1)' },
-              { name: 'React', bg: '#0284C7', text: '#FFFFFF', shadow: 'rgba(2, 132, 199, 0.35)' },
-              { name: 'Next.js', bg: '#27272A', text: '#FAFAFA', shadow: 'rgba(255, 255, 255, 0.15)' },
-              { name: 'Laravel', bg: '#DC2626', text: '#FFFFFF', shadow: 'rgba(220, 38, 38, 0.35)' },
-              { name: 'Flutter', bg: '#0369A1', text: '#FFFFFF', shadow: 'rgba(3, 105, 161, 0.35)' },
-              { name: 'MySQL', bg: '#0F766E', text: '#FFFFFF', shadow: 'rgba(15, 118, 110, 0.35)' },
-            ].map((tech) => (
+          {/* Desktop Tech Stack Badges (Left Column on Desktop) */}
+          <motion.div variants={textItem} className="mt-6 hidden lg:flex flex-wrap gap-2.5 max-w-lg">
+            {TECH_STACK.map((tech) => (
               <span
                 key={tech.name}
                 className="inline-flex items-center px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold tracking-tight transition-all duration-300 select-none hover:-translate-y-1 hover:brightness-110 cursor-default"
@@ -1228,7 +1232,7 @@ export default function Hero({ isLoaded = false }) {
 
         {/* Right — 3D Hanging ID Card (z-10 so strap is behind z-40 text) */}
         <motion.div
-          className="flex-shrink-0 flex items-center justify-center relative z-10 mt-6 lg:mt-0"
+          className="flex-shrink-0 flex flex-col items-center justify-center relative z-10 mt-6 lg:mt-0"
           initial={{ opacity: 0, scale: 0.92, y: 30 }}
           {...(isLoaded
             ? {
@@ -1239,6 +1243,23 @@ export default function Hero({ isLoaded = false }) {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
           <HangingIDCard />
+
+          {/* Mobile Tech Stack Badges (Below ID Card on Mobile with generous spacing) */}
+          <div className="mt-16 sm:mt-20 mb-4 flex lg:hidden flex-wrap justify-center gap-2 max-w-sm px-2 relative z-40">
+            {TECH_STACK.map((tech) => (
+              <span
+                key={tech.name}
+                className="inline-flex items-center px-3 py-1.5 rounded-lg font-mono text-xs font-semibold tracking-tight transition-all duration-300 select-none cursor-default"
+                style={{
+                  backgroundColor: tech.bg,
+                  color: tech.text,
+                  boxShadow: `0 4px 14px ${tech.shadow}, inset 0 1px 0 rgba(255,255,255,0.2)`,
+                }}
+              >
+                {tech.name}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
