@@ -531,10 +531,10 @@ function RollerTypewriterBadge() {
 /* ─────────────────────────────────────────────────────────────
    Realistic Luxury Flat Ribbon Lanyard & Swivel Snap Hook Connector
 ───────────────────────────────────────────────────────────── */
-function LanyardAnchor({ isDesktop }) {
+function LanyardAnchor() {
   return (
     <div
-      className={`absolute ${isDesktop ? '-top-80' : '-top-20'} left-1/2 -translate-x-1/2 z-30 pointer-events-none flex flex-col items-center transition-all duration-300`}
+      className="absolute -top-80 left-1/2 -translate-x-1/2 z-0 pointer-events-none flex flex-col items-center"
     >
       {/* Sleek Flush Metallic Ceiling Slot (Scaled to 40px strap) */}
       <div className="w-16 h-3 bg-gradient-to-b from-[#1E232E] to-[#0A0C10] rounded-b-md shadow-lg border-b border-white/20" />
@@ -544,16 +544,15 @@ function LanyardAnchor({ isDesktop }) {
 
 const STRAP_HALF_W = 20 // 40px wide custom luxury ribbon strap
 
-function DynamicLanyard({ x, y, rotateZ, isDesktop }) {
+function DynamicLanyard({ x, y, rotateZ }) {
   // Dynamic curved Bezier ribbon path with trigonometric rotation matching the card's tilt
   const strapPath = useTransform([x, y, rotateZ], ([cx, cy, rz]) => {
     const safeCx = typeof cx === 'number' && !isNaN(cx) ? cx : 0
     const safeCy = typeof cy === 'number' && !isNaN(cy) ? cy : 0
     const safeRz = typeof rz === 'number' && !isNaN(rz) ? rz : 0
     const rad = (safeRz * Math.PI) / 180
-    const anchorY = isDesktop ? 343 : 115
     const sleeveX = safeCx + 56 * Math.sin(rad)
-    const sleeveY = safeCy + anchorY - 56 * Math.cos(rad)
+    const sleeveY = safeCy + 343 - 56 * Math.cos(rad)
 
     // Tangent vectors along the rotated leather sleeve top edge
     const cosR = Math.cos(rad)
@@ -584,9 +583,8 @@ function DynamicLanyard({ x, y, rotateZ, isDesktop }) {
     const safeCy = typeof cy === 'number' && !isNaN(cy) ? cy : 0
     const safeRz = typeof rz === 'number' && !isNaN(rz) ? rz : 0
     const rad = (safeRz * Math.PI) / 180
-    const anchorY = isDesktop ? 343 : 115
     const sleeveX = safeCx + 56 * Math.sin(rad)
-    const sleeveY = safeCy + anchorY - 56 * Math.cos(rad)
+    const sleeveY = safeCy + 343 - 56 * Math.cos(rad)
     const cosR = Math.cos(rad)
     const sinR = Math.sin(rad)
     const hw = 7
@@ -610,10 +608,10 @@ function DynamicLanyard({ x, y, rotateZ, isDesktop }) {
 
   return (
     <svg
-      className={`absolute ${isDesktop ? '-top-80' : '-top-20'} left-1/2 -translate-x-1/2 overflow-visible pointer-events-none z-0`}
+      className="absolute -top-80 left-1/2 -translate-x-1/2 overflow-visible pointer-events-none z-0"
       width="400"
-      height={isDesktop ? 650 : 250}
-      viewBox={isDesktop ? "-200 0 400 650" : "-200 0 400 250"}
+      height={650}
+      viewBox="-200 0 400 650"
       style={{
         filter: 'drop-shadow(0 5px 8px rgba(0,0,0,0.6))',
       }}
@@ -903,10 +901,10 @@ function HangingIDCard() {
       }}
     >
       {/* ── 1. Metal Swivel Clip Anchor at Top ── */}
-      <LanyardAnchor isDesktop={isDesktop} />
+      <LanyardAnchor />
 
       {/* ── 2. Fabric Lanyard Cord (follows card motion & tilt) ── */}
-      <DynamicLanyard x={cardX} y={cardY} rotateZ={rotateZ} isDesktop={isDesktop} />
+      <DynamicLanyard x={cardX} y={cardY} rotateZ={rotateZ} />
 
       {/* ── 3. Interactive Draggable 3D Card Assembly ── */}
       <motion.div
@@ -918,7 +916,7 @@ function HangingIDCard() {
           rotateY,
           rotateX,
           scale,
-          marginTop: isDesktop ? '55px' : '20px',
+          marginTop: '55px',
           transformStyle: 'preserve-3d',
           touchAction: 'none',
           willChange: 'transform',
@@ -1172,7 +1170,7 @@ export default function Hero({ isLoaded = false }) {
       <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 sm:gap-16 lg:gap-16 xl:gap-20 py-8 sm:py-16 relative z-10">
         {/* Left — Text Information (Higher Z-Index so lanyard stays cleanly behind) */}
         <motion.div
-          className="flex-1 min-w-0 relative z-30"
+          className="flex-1 min-w-0 relative z-40 pointer-events-auto"
           variants={textContainer}
           initial="hidden"
           {...(isLoaded
@@ -1228,9 +1226,9 @@ export default function Hero({ isLoaded = false }) {
           </motion.div>
         </motion.div>
 
-        {/* Right — 3D Hanging ID Card */}
+        {/* Right — 3D Hanging ID Card (z-10 so strap is behind z-40 text) */}
         <motion.div
-          className="flex-shrink-0 flex items-center justify-center relative z-20 mt-6 lg:mt-0"
+          className="flex-shrink-0 flex items-center justify-center relative z-10 mt-6 lg:mt-0"
           initial={{ opacity: 0, scale: 0.92, y: 30 }}
           {...(isLoaded
             ? {
