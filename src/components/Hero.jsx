@@ -180,22 +180,14 @@ function HeroBackground() {
         }}
       />
 
-      {/* ── 2. SVG Grain / Noise Texture Overlay (Organic Natural Texture) ── */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.06]"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <filter id="noise">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.75"
-            numOctaves="4"
-            stitchTiles="stitch"
-          />
-          <feColorMatrix type="saturate" values="0" />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#noise)" />
-      </svg>
+      {/* ── 2. Subtle Geometric Noise/Grain (Lightweight CSS, No GPU Stutter) ── */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)',
+          backgroundSize: '16px 16px',
+        }}
+      />
 
       {/* ── 3. Dot Matrix Grid (Amber warm dots, fading from center) ── */}
       <div
@@ -225,54 +217,53 @@ function HeroBackground() {
       />
 
       {/* ── 5. Left Warm Amber Aurora (Breathing, Drifting) ── */}
-      <motion.div
-        className="absolute -top-20 -left-24 w-[700px] h-[700px] rounded-full"
+      {/* ── 5. Left Warm Amber Aurora (Pure CSS - No GPU repaint) ── */}
+      <div
+        className="absolute -top-20 -left-24 w-[700px] h-[700px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(217,165,68,0.28) 0%, rgba(245,158,11,0.15) 40%, transparent 68%)',
+          background: 'radial-gradient(circle, rgba(217,165,68,0.22) 0%, rgba(245,158,11,0.12) 40%, transparent 68%)',
           filter: 'blur(90px)',
+          animation: 'auroraLeft 10s ease-in-out infinite',
+          willChange: 'transform',
         }}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7], x: [0, 35, 0], y: [0, 25, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* ── 6. Right Sapphire/Teal Aurora (Behind Card) ── */}
-      <motion.div
-        className="absolute top-0 -right-20 w-[750px] h-[750px] rounded-full"
+      {/* ── 6. Right Sapphire/Teal Aurora (Pure CSS) ── */}
+      <div
+        className="absolute top-0 -right-20 w-[750px] h-[750px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(14,165,233,0.22) 0%, rgba(59,130,246,0.18) 45%, transparent 72%)',
+          background: 'radial-gradient(circle, rgba(14,165,233,0.18) 0%, rgba(59,130,246,0.14) 45%, transparent 72%)',
           filter: 'blur(100px)',
+          animation: 'auroraRight 12s ease-in-out infinite 1.5s',
+          willChange: 'transform',
         }}
-        animate={{ scale: [1, 1.28, 1], opacity: [0.75, 1, 0.75], x: [0, -30, 0], y: [0, -25, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />
 
-      {/* ── 7. Bottom-Center Violet Bloom ── */}
-      <motion.div
-        className="absolute -bottom-32 left-1/3 w-[650px] h-[650px] rounded-full"
+      {/* ── 7. Bottom-Center Violet Bloom (Pure CSS) ── */}
+      <div
+        className="absolute -bottom-32 left-1/3 w-[650px] h-[650px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.2) 0%, rgba(99,102,241,0.12) 50%, transparent 75%)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.16) 0%, rgba(99,102,241,0.1) 50%, transparent 75%)',
           filter: 'blur(110px)',
+          animation: 'auroraBottom 11s ease-in-out infinite 2.5s',
+          willChange: 'transform',
         }}
-        animate={{ scale: [1, 1.18, 1], opacity: [0.55, 0.85, 0.55] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 2.5 }}
       />
 
-      {/* ── 8. Mid Warm Rose/Coral Accent (Subtle Center Warmth) ── */}
-      <motion.div
-        className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full"
+      {/* ── 8. Mid Warm Rose/Coral Accent (Static, no animation needed) ── */}
+      <div
+        className="absolute top-1/3 left-1/3 w-[400px] h-[400px] rounded-full pointer-events-none"
         style={{
-          background: 'radial-gradient(circle, rgba(251,113,133,0.08) 0%, transparent 65%)',
+          background: 'radial-gradient(circle, rgba(251,113,133,0.06) 0%, transparent 65%)',
           filter: 'blur(80px)',
         }}
-        animate={{ scale: [1, 1.3, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
       />
 
-      {/* ── 9. Animated Shimmer Ring Pulses (Natural Depth Rings) ── */}
+      {/* ── 9. Shimmer Ring Pulses (Pure CSS) ── */}
       {[0, 1, 2].map((i) => (
-        <motion.div
+        <div
           key={i}
-          className="absolute rounded-full border"
+          className="absolute rounded-full border pointer-events-none"
           style={{
             left: '50%',
             top: '45%',
@@ -280,10 +271,10 @@ function HeroBackground() {
             height: `${340 + i * 160}px`,
             marginLeft: `-${(340 + i * 160) / 2}px`,
             marginTop: `-${(340 + i * 160) / 2}px`,
-            borderColor: `rgba(217, 165, 68, ${0.06 - i * 0.015})`,
+            borderColor: `rgba(217, 165, 68, ${0.05 - i * 0.012})`,
+            animation: `ringPulse ${5 + i * 1.5}s ease-in-out infinite ${i * 1.2}s`,
+            willChange: 'transform',
           }}
-          animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.8, 0.4] }}
-          transition={{ duration: 5 + i * 1.5, repeat: Infinity, ease: 'easeInOut', delay: i * 1.2 }}
         />
       ))}
 
@@ -355,18 +346,12 @@ function HeroBackground() {
         }}
       />
 
-      {/* ── 13. Slow Color-Breath Gradient Overlay (Bernapas Perlahan, tidak alay) ── */}
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: [
-            'radial-gradient(ellipse 90% 50% at 50% 0%, rgba(217,165,68,0.04) 0%, transparent 60%)',
-            'radial-gradient(ellipse 90% 50% at 50% 0%, rgba(56,189,248,0.04) 0%, transparent 60%)',
-            'radial-gradient(ellipse 90% 50% at 50% 0%, rgba(139,92,246,0.04) 0%, transparent 60%)',
-            'radial-gradient(ellipse 90% 50% at 50% 0%, rgba(217,165,68,0.04) 0%, transparent 60%)',
-          ],
+      {/* ── 13. Color-Breath Gradient Overlay (Removed on mobile for perf - static) ── */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 90% 50% at 50% 0%, rgba(217,165,68,0.03) 0%, transparent 60%)',
         }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* ── 14. Bottom Seamless Gradient Blend (Transisi Halus ke #07090D) ── */}
@@ -622,17 +607,15 @@ function DynamicLanyard({ x, y, rotateZ }) {
 
   return (
     <svg
-      className="absolute -top-80 left-1/2 -translate-x-1/2 overflow-visible pointer-events-none z-10"
+      className="absolute -top-80 left-1/2 -translate-x-1/2 overflow-visible pointer-events-none z-0"
       width="400"
       height="650"
       viewBox="-200 0 400 650"
+      style={{
+        filter: 'drop-shadow(0 5px 8px rgba(0,0,0,0.6))',
+      }}
     >
       <defs>
-        {/* Drop shadow for 3D depth */}
-        <filter id="lanyardDropShadow" x="-50%" y="-30%" width="200%" height="160%">
-          <feDropShadow dx="0" dy="5" stdDeviation="6" floodColor="#000000" floodOpacity="0.75" />
-        </filter>
-
         {/* Natural Dark Charcoal Grey / Obsidian Woven Fabric Gradient */}
         <linearGradient id="nylonStrapGrad" gradientUnits="userSpaceOnUse" x1={-STRAP_HALF_W} y1="0" x2={STRAP_HALF_W} y2="0">
           <stop offset="0%" stopColor="#101318" />
@@ -651,7 +634,7 @@ function DynamicLanyard({ x, y, rotateZ }) {
       </defs>
 
       {/* ── Clean Natural Dark Grey / Black Flat Ribbon Strap ── */}
-      <g filter="url(#lanyardDropShadow)">
+      <g>
         {/* Solid Natural Woven Dark Grey Ribbon */}
         <motion.path
           d={strapPath}
@@ -933,6 +916,8 @@ function HangingIDCard() {
           scale,
           marginTop: '55px',
           transformStyle: 'preserve-3d',
+          touchAction: 'none',
+          willChange: 'transform',
         }}
         drag
         dragMomentum={true}
@@ -1181,9 +1166,9 @@ export default function Hero({ isLoaded = false }) {
       <HeroBackground />
 
       <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 xl:gap-20 py-8 sm:py-12 relative z-10">
-        {/* Left — Text Information */}
+        {/* Left — Text Information (Higher Z-Index so lanyard stays cleanly behind) */}
         <motion.div
-          className="flex-1 min-w-0 z-10"
+          className="flex-1 min-w-0 relative z-30"
           variants={textContainer}
           initial="hidden"
           {...(isLoaded
@@ -1241,7 +1226,7 @@ export default function Hero({ isLoaded = false }) {
 
         {/* Right — 3D Hanging ID Card */}
         <motion.div
-          className="flex-shrink-0 flex items-center justify-center"
+          className="flex-shrink-0 flex items-center justify-center relative z-20 mt-4 lg:mt-0"
           initial={{ opacity: 0, scale: 0.92, y: 30 }}
           {...(isLoaded
             ? {
