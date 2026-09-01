@@ -40,21 +40,21 @@ const EXPERIENCES = [
     period: 'Februari 2026 – Sekarang',
     icon: Briefcase,
     subIcon: Terminal,
-    // Warm Amber / Sunset Gold Radiant Theme
+    // Warm Orange Radiant Theme
     theme: {
-      accentText: 'text-amber-400 font-semibold',
-      badgeBg: 'bg-amber-500/20',
-      badgeText: 'text-amber-200 font-bold',
-      badgeBorder: 'border-amber-400/40',
-      iconBg: 'bg-amber-500/20',
-      iconBorder: 'border-amber-400/35',
-      iconColor: '#FDE047',
-      cardBg: 'linear-gradient(155deg, rgba(69, 26, 3, 0.45) 0%, rgba(30, 20, 12, 0.9) 55%, rgba(10, 14, 26, 0.98) 100%)',
-      cardBorder: 'border-amber-500/25 hover:border-amber-400/60',
-      cardInnerGlow: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245, 158, 11, 0.22) 0%, transparent 70%)',
-      topLine: 'linear-gradient(90deg, #F59E0B 0%, #FBBF24 50%, #FB923C 80%, transparent 100%)',
-      topLineGlow: '0 0 16px rgba(245, 158, 11, 0.7)',
-      skillBg: 'bg-amber-950/40 text-amber-100 border-amber-500/25 hover:border-amber-400/50 hover:bg-amber-500/20',
+      accentText: 'text-orange-400 font-semibold',
+      badgeBg: 'bg-orange-500/20',
+      badgeText: 'text-orange-200 font-bold',
+      badgeBorder: 'border-orange-400/40',
+      iconBg: 'bg-orange-500/20',
+      iconBorder: 'border-orange-400/35',
+      iconColor: '#FB923C',
+      cardBg: 'linear-gradient(155deg, rgba(90, 35, 5, 0.45) 0%, rgba(30, 18, 8, 0.9) 55%, rgba(10, 14, 26, 0.98) 100%)',
+      cardBorder: 'border-orange-500/25 hover:border-orange-400/60',
+      cardInnerGlow: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249, 115, 22, 0.22) 0%, transparent 70%)',
+      topLine: 'linear-gradient(90deg, #F97316 0%, #FB923C 50%, #EA580C 80%, transparent 100%)',
+      topLineGlow: '0 0 16px rgba(249, 115, 22, 0.7)',
+      skillBg: 'bg-orange-950/40 text-orange-100 border-orange-500/25 hover:border-orange-400/50 hover:bg-orange-500/20',
     },
     description:
       'Mengembangkan aplikasi ANITA berbasis web (PHP Laravel) dan mobile (Flutter/Dart) yang digunakan oleh 7.500+ pengguna aktif. Bertanggung jawab atas modul absensi digital, dashboard monitoring ASN Pemerintah Kabupaten Takalar, perancangan RESTful API terintegrasi, serta optimasi performa dan skalabilitas sistem.',
@@ -259,9 +259,9 @@ export default function Experience() {
 
       {/* ── 3. Seamless Bottom Gradient Blend into Project Section ── */}
       <div
-        className="pointer-events-none absolute bottom-0 left-0 right-0 h-48 z-0"
+        className="pointer-events-none absolute bottom-0 left-0 right-0 h-64 z-0"
         style={{
-          background: 'linear-gradient(to bottom, transparent 0%, rgba(7, 9, 14, 0.7) 50%, #07090E 100%)',
+          background: 'linear-gradient(to bottom, transparent 0%, rgba(7, 9, 14, 0.4) 30%, rgba(7, 9, 14, 0.85) 70%, #07090E 100%)',
         }}
       />
     </section>

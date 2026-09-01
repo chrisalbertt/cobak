@@ -200,22 +200,6 @@ function HeroBackground() {
         }}
       />
 
-      {/* ── 4. Diagonal Light Ray Accents ── */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              -45deg,
-              transparent,
-              transparent 80px,
-              rgba(255, 255, 255, 0.15) 80px,
-              rgba(255, 255, 255, 0.15) 81px
-            )
-          `,
-        }}
-      />
-
       {/* ── 5. Left Warm Amber Aurora (Breathing, Drifting) ── */}
       {/* ── 5. Left Warm Amber Aurora (Pure CSS - No GPU repaint) ── */}
       <div
@@ -1105,7 +1089,7 @@ function HangingIDCard() {
               <div className="bg-[#0b0d12] p-3 rounded-lg border border-hairline/40 font-mono text-xs space-y-1.5">
                 <p className="text-paper font-semibold">CORE CAPABILITIES</p>
                 <div className="text-[11px] text-muted space-y-0.5">
-                  <p>• Web: React, Next.js, HTML5, CSS3</p>
+                  <p>• Web: React, Next.js, HTML, CSS</p>
                   <p>• Backend: Laravel, Node.js, REST API</p>
                   <p>• Mobile & DB: Flutter, Dart, MySQL</p>
                 </div>

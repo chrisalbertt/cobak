@@ -113,20 +113,20 @@ export default function Portfolio() {
     >
       {/* ── 1. Top Seamless Transition from Experience ── */}
       <div
-        className="pointer-events-none absolute top-0 left-0 right-0 h-44 z-0"
+        className="pointer-events-none absolute top-0 left-0 right-0 h-64 z-0"
         style={{
-          background: 'linear-gradient(180deg, #07090E 0%, rgba(12, 17, 30, 0.7) 50%, transparent 100%)',
+          background: 'linear-gradient(180deg, #07090E 0%, rgba(7, 9, 14, 0.85) 35%, rgba(12, 17, 30, 0.4) 70%, transparent 100%)',
         }}
       />
 
       {/* ── 2. Dynamic Luminous Background Effects ── */}
       {/* Warm Amber Aurora top-right */}
       <motion.div
-        className="pointer-events-none absolute -top-32 -right-32 w-[750px] h-[750px] rounded-full"
+        className="pointer-events-none absolute top-12 -right-32 w-[750px] h-[750px] rounded-full"
         animate={{ scale: [1, 1.2, 1], opacity: [0.28, 0.45, 0.28] }}
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         style={{
-          background: 'radial-gradient(circle, rgba(245, 158, 11, 0.38) 0%, rgba(217, 119, 6, 0.1) 50%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(217, 119, 6, 0.08) 50%, transparent 70%)',
           filter: 'blur(90px)',
         }}
       />
