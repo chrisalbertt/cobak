@@ -552,8 +552,8 @@ function DynamicLanyard({ x, y, rotateZ, isDesktop }) {
     const safeRz = typeof rz === 'number' && !isNaN(rz) ? rz : 0
     const rad = (safeRz * Math.PI) / 180
     const anchorY = isDesktop ? 375 : 615
-    const sleeveX = safeCx + 52 * Math.sin(rad)
-    const sleeveY = safeCy + anchorY - 52 * Math.cos(rad)
+    const sleeveX = safeCx + 64 * Math.sin(rad)
+    const sleeveY = safeCy + anchorY - 64 * Math.cos(rad)
 
     // Tangent vectors along the rotated leather sleeve top edge
     const cosR = Math.cos(rad)
@@ -585,8 +585,8 @@ function DynamicLanyard({ x, y, rotateZ, isDesktop }) {
     const safeRz = typeof rz === 'number' && !isNaN(rz) ? rz : 0
     const rad = (safeRz * Math.PI) / 180
     const anchorY = isDesktop ? 375 : 615
-    const sleeveX = safeCx + 52 * Math.sin(rad)
-    const sleeveY = safeCy + anchorY - 52 * Math.cos(rad)
+    const sleeveX = safeCx + 64 * Math.sin(rad)
+    const sleeveY = safeCy + anchorY - 64 * Math.cos(rad)
     const cosR = Math.cos(rad)
     const sinR = Math.sin(rad)
     const hw = 7
@@ -853,13 +853,13 @@ function HangingIDCard() {
     flipSpring.set(isFlipped ? 180 : 0)
   }, [isFlipped, flipSpring])
 
-  const rotateY = useTransform([flipSpring, dragTiltY], ([f, d]) => f + d)
-  const rotateX = useTransform(cardY, [-180, 0, 180], [16, 0, -16])
+  const rotateY = dragTiltY
+  const rotateX = useTransform(cardY, [-180, 0, 180], [14, 0, -14])
 
   // Dynamic Specular Light Glare
-  const glareX = useTransform([cardX, rotateY], ([cx, ry]) => -140 + cx * 1.2 + ry * 1.5)
-  const glareOpacity = useTransform([cardX, cardY, rotateY], ([cx, cy, ry]) => {
-    const activity = Math.sqrt(cx * cx + cy * cy) * 0.022 + Math.abs(ry) * 0.01 + 0.18
+  const glareX = useTransform([cardX, flipSpring], ([cx, fs]) => -140 + cx * 1.2 + fs * 1.5)
+  const glareOpacity = useTransform([cardX, cardY, flipSpring], ([cx, cy, fs]) => {
+    const activity = Math.sqrt(cx * cx + cy * cy) * 0.022 + Math.abs(fs) * 0.005 + 0.18
     return Math.min(0.95, Math.max(0.15, activity))
   })
   const backGlareOpacity = useTransform(glareOpacity, (o) => o * 0.35)
@@ -965,10 +965,11 @@ function HangingIDCard() {
         <CardSwivelHardware />
 
         {/* ── 3D DOUBLE-SIDED CARD FLIP CONTAINER ── */}
-        <div
+        <motion.div
           className="relative w-64 sm:w-72 md:w-80 rounded-2xl cursor-pointer"
           style={{
             transformStyle: 'preserve-3d',
+            rotateY: flipSpring,
           }}
           onClick={() => setIsFlipped(!isFlipped)}
           title="Klik untuk membalik kartu (Flip Card)"
@@ -1134,7 +1135,7 @@ function HangingIDCard() {
               <p className="font-mono text-[8px] text-muted/60 mt-1">ID: 123-DEV-2025</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   )
