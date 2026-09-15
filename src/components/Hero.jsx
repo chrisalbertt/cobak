@@ -1166,9 +1166,13 @@ const TECH_STACK = [
   { name: 'JavaScript', bg: '#3D3D3D', text: '#FFFFFF', shadow: 'rgba(255, 255, 255, 0.1)' },
   { name: 'React', bg: '#0284C7', text: '#FFFFFF', shadow: 'rgba(2, 132, 199, 0.35)' },
   { name: 'Next.js', bg: '#27272A', text: '#FAFAFA', shadow: 'rgba(255, 255, 255, 0.15)' },
+  { name: 'Tailwind CSS', bg: '#0EA5E9', text: '#FFFFFF', shadow: 'rgba(14, 165, 233, 0.35)' },
   { name: 'Laravel', bg: '#DC2626', text: '#FFFFFF', shadow: 'rgba(220, 38, 38, 0.35)' },
+  { name: 'PHP', bg: '#4F46E5', text: '#FFFFFF', shadow: 'rgba(79, 70, 229, 0.35)' },
+  { name: 'REST API', bg: '#6366F1', text: '#FFFFFF', shadow: 'rgba(99, 102, 241, 0.35)' },
   { name: 'Flutter', bg: '#0369A1', text: '#FFFFFF', shadow: 'rgba(3, 105, 161, 0.35)' },
   { name: 'MySQL', bg: '#0F766E', text: '#FFFFFF', shadow: 'rgba(15, 118, 110, 0.35)' },
+  { name: 'Git', bg: '#EA580C', text: '#FFFFFF', shadow: 'rgba(234, 88, 12, 0.35)' },
 ]
 
 /* ── Main Hero ── */
