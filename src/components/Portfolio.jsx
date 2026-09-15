@@ -136,7 +136,7 @@ const GITHUB_PROJECTS = [
       skillBg: 'bg-sky-950/40 text-sky-100 border-sky-500/25 hover:border-sky-400/50',
     },
     description:
-      'Aplikasi manajemen administrasi keuangan dan pembayaran tagihan SPP sekolah untuk mempermudah pencatatan transaksi kasir, tracking tagihan, dan rekonsiliasi data siswa.',
+      'Aplikasi manajemen administrasi keuangan dan pembayaran tagihan sekolah untuk mempermudah pencatatan transaksi kasir, tracking tagihan, dan rekonsiliasi data siswa.',
     stack: ['Laravel', 'PHP', 'MySQL', 'JavaScript'],
   },
   {
