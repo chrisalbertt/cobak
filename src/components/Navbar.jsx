@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { name: 'Home', href: '#home' },
   { name: 'About Me', href: '#about' },
   { name: 'Experience', href: '#experience' },
-  { name: 'Project', href: '#project' },
+  { name: 'Projects', href: '#project' },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -71,11 +71,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? 'bg-[#0B0D10]/90 backdrop-blur-md border-b border-hairline/40 py-3.5 shadow-xl shadow-black/30'
           : 'bg-transparent py-6'
-      }`}
+        }`}
     >
       <div className="w-full px-6 sm:px-8 md:px-10 lg:px-12 flex items-center justify-between">
         {/* ── Left: Navigation Links (Larger Size & Bold Typography) ── */}
@@ -96,11 +95,10 @@ export default function Navbar() {
                     target.scrollIntoView({ behavior: 'smooth' })
                   }
                 }}
-                className={`relative px-4 py-2 rounded-lg font-mono text-base lg:text-lg font-semibold tracking-tight transition-all duration-200 ${
-                  isActive
+                className={`relative px-4 py-2 rounded-lg font-mono text-base lg:text-lg font-semibold tracking-tight transition-all duration-200 ${isActive
                     ? 'text-amber'
                     : 'text-muted hover:text-paper hover:bg-white/[0.05]'
-                }`}
+                  }`}
               >
                 {link.name}
                 {isActive && (
