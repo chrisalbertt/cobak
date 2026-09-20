@@ -385,7 +385,7 @@ export default function About() {
 
           <div className="space-y-4 max-w-2xl text-left">
             {[
-              <>Lulusan <span className="text-paper font-semibold">Sistem Informasi Universitas Kristen Duta Wacana Yogyakarta</span> yang terbiasa mengembangkan aplikasi web menggunakan <span className="text-amber font-semibold">Laravel (PHP)</span> serta pengembangan aplikasi mobile menggunakan <span className="text-amber font-semibold">Flutter</span>.</>,
+              <>Lulusan <span className="text-paper font-semibold">Sistem Informasi Universitas Kristen Duta Wacana Yogyakarta</span> yang terbiasa mengembangkan aplikasi web menggunakan <span className="text-amber font-semibold">Laravel (PHP), HTML, CSS, JavaScript, dan MySQL</span>, serta mengembangkan aplikasi mobile menggunakan <span className="text-amber font-semibold">Dart (Flutter) untuk Android dan iOS</span>.</>,
               <>Berpengalaman dalam menganalisis kebutuhan pengguna, membangun fitur aplikasi web maupun mobile, serta melakukan debugging dan pengujian untuk memastikan sistem berjalan optimal sesuai kebutuhan.</>,
               <>Memiliki kemampuan problem solving, mampu bekerja sama dalam tim, serta memiliki motivasi tinggi untuk terus belajar dan berkembang di bidang pengembangan sistem dan teknologi informasi.</>,
             ].map((txt, i) => (
