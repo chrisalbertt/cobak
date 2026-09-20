@@ -54,8 +54,8 @@ const FEATURED_PROJECTS = [
     link: 'https://hiyoko.id/',
     buttonText: 'Kunjungi Website Hiyoko.id',
     description:
-      'Platform simulasi ujian bahasa Jepang (CBT) untuk persiapan tes JFT-Basic dan Tes SIM Jepang yang menyerupai ujian aslinya. Dilengkapi sistem pembayaran otomatis QRIS 24/7 dan modul bank soal interaktif.',
-    stack: [
+'Platform simulasi ujian bahasa Jepang (CBT) untuk persiapan JFT-Basic dan Tes SIM Jepang yang menyerupai ujian aslinya. Dilengkapi payment gateway terintegrasi untuk pembayaran otomatis melalui QRIS 24/7, serta modul bank soal interaktif.',
+stack: [
       'Laravel',
       'PHP',
       'MySQL',
